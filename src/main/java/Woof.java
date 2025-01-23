@@ -83,6 +83,35 @@ public class Woof {
                     System.out.println(e.getMessage());
                 }
 
+            } else if (input.startsWith("delete")) {
+                try {
+                    if (TaskList.size() == 0) {
+                        throw new IllegalStateException("WERWER! You have no tasks yet!");
+                    }
+
+                    if (input.trim().length() < 5) {
+                        throw new IllegalArgumentException(
+                                "WERWER! You must input the index of the task you want to unmark!");
+                    }
+
+                    String index = input.substring(7).trim();
+                    if (index.isEmpty()) {
+                        throw new IllegalArgumentException(
+                                "WERWER! You must input the index of the task you want to unmark!");
+                    }
+
+                    int i = Integer.parseInt(index);
+                    if (i < 0 || i > TaskList.size()) {
+                        throw new IndexOutOfBoundsException("WERWER! The index you have entered is out of bounds!");
+                    }
+
+                    TaskList.delete(index);
+                    System.out.println("Woof! Less Work! I have deleted:\n" + TaskList.get(index));
+                    System.out.println("Woof! You have " + TaskList.size() + " tasks now.");
+                } catch (IllegalStateException | IllegalArgumentException | IndexOutOfBoundsException e) {
+                    System.out.println(e.getMessage());
+                }
+
             } else if (input.startsWith("todo")) {
                 if (input.trim().length() < 5) {
                     System.out.println("WERWER! Content of todo cannot be empty!");

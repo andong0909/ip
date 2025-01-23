@@ -34,6 +34,11 @@ public class TaskList {
         list.get(Integer.parseInt(index) - 1).unmarkAsDone();
     }
 
+    public static void delete(String index) {
+        Integer.parseInt(index);
+        list.remove(Integer.parseInt(index) - 1);
+    }
+
     public static String get(String index) {
         Integer.parseInt(index);
         return list.get(Integer.parseInt(index) - 1).toString();
