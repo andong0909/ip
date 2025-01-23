@@ -20,32 +20,45 @@ public class Woof {
                 System.out.println("Aww byebye. Don't forget to come back soon");
                 break;
             } else if (input.equals("list")) {
-                System.out.println(taskList.print());
+                System.out.println(TaskList.print());
             } else if (input.startsWith("mark")) {
                 String index = input.substring(5);
                 try {
-                    taskList.mark(index);
+                    TaskList.mark(index);
                 } catch (MarkedErrorException e) {
                     System.out.println(e.getMessage());
                     exceptionThrown = true;
                 }
                 if (!exceptionThrown) {
-                    System.out.println("Woof! Good Job on completing: \n" + taskList.get(index));
+                    System.out.println("Woof! Good Job on completing: \n" + TaskList.get(index));
                 }
             } else if (input.startsWith("unmark")) {
                 String index = input.substring(7);
                 try {
-                    taskList.unmark(index);
+                    TaskList.unmark(index);
                 } catch (UnmarkedErrorException e) {
                     System.out.println(e.getMessage());
                     exceptionThrown = true;
                 }
                 if (!exceptionThrown) {
-                    System.out.println("Woof! Made a mistake? I have unmarked: \n" + taskList.get(index));
+                    System.out.println("Woof! Made a mistake? I have unmarked: \n" + TaskList.get(index));
                 }
+            } else if (input.startsWith("todo")) {
+                TaskList.addTodo(input.substring(5).trim());
+                System.out.println("Woof! successfully added: " + TaskList.getLast());
+                System.out.println("Woof! You have " + TaskList.size() + " tasks now.");
+            } else if (input.startsWith("deadline")) {
+                String[] parts = input.split("deadline|/by");
+                TaskList.addDeadline(parts[1].trim(), parts[2].trim());
+                System.out.println("Woof! successfully added: " + TaskList.getLast());
+                System.out.println("Woof! You have " + TaskList.size() + " tasks now.");
+            } else if (input.startsWith("event")) {
+                String[] parts = input.split("event|/from|/to");
+                TaskList.addEvent(parts[1].trim(), parts[2].trim(), parts[3].trim());
+                System.out.println("Woof! successfully added: " + TaskList.getLast());
+                System.out.println("Woof! You have " + TaskList.size() + " tasks now.");
             } else {
-                taskList.addTask(input);
-                System.out.println("added: " + input);
+                System.out.println("blah blah blah");
             }
         }
 

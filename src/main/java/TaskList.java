@@ -3,8 +3,16 @@ import java.util.*;
 public class TaskList {
     private static ArrayList<Task> list = new ArrayList<>(100);
 
-    public static void addTask(String task) {
-        list.add(new Task(task));
+    public static void addTodo(String task) {
+        list.add(new Todo(task));
+    }
+
+    public static void addDeadline(String task, String date) {
+        list.add(new Deadline(task, date));
+    }
+
+    public static void addEvent(String task, String from, String to) {
+        list.add(new Event(task, from, to));
     }
 
     public static String print() {
@@ -29,5 +37,13 @@ public class TaskList {
     public static String get(String index) {
         Integer.parseInt(index);
         return list.get(Integer.parseInt(index) - 1).toString();
+    }
+
+    public static int size() {
+        return list.size();
+    }
+
+    public static String getLast() {
+        return list.get(list.size() - 1).toString();
     }
 }
