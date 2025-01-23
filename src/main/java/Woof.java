@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 public class Woof {
-    private static TaskList taskList = new TaskList();
     public static void main(String[] args) {
         // Greeting
         System.out.println("""
@@ -14,7 +13,6 @@ public class Woof {
 
         while (true) {
             String input = sc.nextLine();
-            boolean exceptionThrown = false;
 
             if (input.equals("bye")) {
                 System.out.println("Aww byebye. Don't forget to come back soon!");
