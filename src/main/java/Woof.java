@@ -30,7 +30,7 @@ public class Woof {
                     exceptionThrown = true;
                 }
                 if (!exceptionThrown) {
-                    System.out.println("Woof! Good Job on completing: \n" + TaskList.get(index));
+                    System.out.println("Woof! Good Job on completing:\n" + TaskList.get(index));
                 }
             } else if (input.startsWith("unmark")) {
                 String index = input.substring(7);
@@ -41,7 +41,7 @@ public class Woof {
                     exceptionThrown = true;
                 }
                 if (!exceptionThrown) {
-                    System.out.println("Woof! Made a mistake? I have unmarked: \n" + TaskList.get(index));
+                    System.out.println("Woof! Made a mistake? I have unmarked:\n" + TaskList.get(index));
                 }
             } else if (input.startsWith("todo")) {
                 TaskList.addTodo(input.substring(5).trim());
