@@ -18,29 +18,25 @@ public class TaskList {
     public static String print() {
         StringBuilder sb = new StringBuilder();
         for (int i = 1; i <= list.size(); i++) {
-            String curr = list.get(i-1).toString();
+            String curr = list.get(i - 1).toString();
             sb.append(i).append(". ").append(curr).append("\n");
         }
         return sb.toString();
     }
 
     public static void mark(String index) throws MarkedErrorException {
-        Integer.parseInt(index);
         list.get(Integer.parseInt(index) - 1).markAsDone();
     }
 
     public static void unmark(String index) throws UnmarkedErrorException {
-        Integer.parseInt(index);
         list.get(Integer.parseInt(index) - 1).unmarkAsDone();
     }
 
     public static void delete(String index) {
-        Integer.parseInt(index);
         list.remove(Integer.parseInt(index) - 1);
     }
 
     public static String get(String index) {
-        Integer.parseInt(index);
         return list.get(Integer.parseInt(index) - 1).toString();
     }
 

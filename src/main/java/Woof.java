@@ -1,12 +1,40 @@
 import java.util.Scanner;
 
 public class Woof {
+    private static enum Command {
+        EXIT, LIST_ALL, MARK, UNMARK, REMOVE, CREATE_TODO, CREATE_DEADLINE, CREATE_EVENT
+    }
+
+    private Command parseCommand(String input) {
+        input = input.trim();
+        if (input.contains(" ")) {
+            String[] parts = input.split(" ", 2);
+            // MARK
+            return switch (parts[0].toLowerCase()) {
+                case "mark" -> Command.MARK;
+                case "unmark" -> Command.UNMARK;
+                case "delete" -> Command.REMOVE;
+                case "todo" -> Command.CREATE_TODO;
+                case "deadline" -> Command.CREATE_DEADLINE;
+                case "event" -> Command.CREATE_EVENT;
+                default -> throw new IllegalArgumentException("woof woof woof?");
+            };
+        } else {
+            if (input.equalsIgnoreCase("bye")) {
+                return Command.EXIT;
+            } else if (input.equalsIgnoreCase("list")) {
+                return Command.LIST_ALL;
+            } else {
+                throw new IllegalArgumentException("woof woof woof?");
+            }
+        }
+    }
+
     public static void main(String[] args) {
         // Greeting
         System.out.println("""
                 Woof! Woof! I am your paw-sonsal chatbot!
-                What can Woof do for you?
-                """);
+                What can Woof do for you?""");
 
         // Echo
         Scanner sc = new Scanner(System.in);
