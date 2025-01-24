@@ -17,6 +17,7 @@ public class Woof {
                 case "todo" -> Command.CREATE_TODO;
                 case "deadline" -> Command.CREATE_DEADLINE;
                 case "event" -> Command.CREATE_EVENT;
+                case "list" -> Command.LIST_ALL;
                 default -> throw new IllegalArgumentException("woof woof woof?");
             };
         } else {
@@ -30,154 +31,151 @@ public class Woof {
         }
     }
 
-    public static void main(String[] args) {
-        // Greeting
+    private static void greet() {
         System.out.println("""
                 Woof! Woof! I am your paw-sonsal chatbot!
                 What can Woof do for you?""");
+    }
 
-        // Echo
-        Scanner sc = new Scanner(System.in);
+    private static void goodbye() {
+        System.out.println("""
+                Woof! Thank you for using me!
+                Hope to see you again soon!""");
+    }
 
-        while (true) {
-            String input = sc.nextLine();
+    private static String[] validateArgs(Command c, String input) throws Exception {
+        // LIST_ALL
+        if (c == Command.LIST_ALL) {
+            return new String[1];
+        }
+        String leftover = input.split(" ", 2)[1];
+        switch (c) {
+            case MARK:
+                // fall over
 
-            if (input.equals("bye")) {
-                System.out.println("Aww byebye. Don't forget to come back soon!");
+            case UNMARK:
+                // fall over
+
+            case REMOVE:
+                if (TaskList.size() == 0) {
+                    throw new IllegalStateException("WERWER! You have no tasks yet!");
+                }
+                String index = leftover.trim();
+                if (!isPositiveInteger(index)) {
+                    throw new NumberFormatException("WERWER! Make sure you have input a valid index!");
+                }
+                int i = Integer.parseInt(index);
+                if (i > TaskList.size()) {
+                    throw new IndexOutOfBoundsException("WERWER! The index you have entered is too large!");
+                }
+                return new String[] { index };
+            case CREATE_TODO:
+                String description = leftover.trim();
+                if (description.isEmpty()) {
+                    throw new IllegalArgumentException("WERWER! Content of todo cannot be empty!");
+                }
+                return new String[] { description };
+
+            case CREATE_DEADLINE:
+                if (!input.contains("/by")) {
+                    throw new IllegalArgumentException("""
+                WERWER! Something in deadline is missing!
+                Follow this template woof: deadline (your task) /by (deadline)""");
+                }
+                String[] parts = leftover.split("/by");
+                if (parts.length != 2 || parts[0].trim().isEmpty() || parts[1].trim().isEmpty()) {
+                    throw new IllegalArgumentException("""
+                WERWER! Something in deadline is missing!
+                Follow this template woof: deadline (your task) /by (deadline)""");
+                }
+                return parts;
+
+            case CREATE_EVENT:
+                if (!input.contains("/from") || !input.contains("/to")) {
+                    throw new IllegalArgumentException("""
+                WERWER! Something in event is missing!
+                Follow this template woof: event (your task) /from (start time) /to (end time)""");
+                }
+                parts = leftover.split("/from|/to");
+                if (parts.length != 3 || parts[0].trim().isEmpty() || parts[1].trim().isEmpty()
+                        || parts[2].trim().isEmpty()) {
+                    throw new IllegalArgumentException("""
+                WERWER! Something in event is missing!
+                Follow this template woof: event (your task) /from (start time) /to (end time)""");
+                }
+                return parts;
+
+            default:
+                throw new IllegalArgumentException("woof woof woof?");
+        }
+    }
+
+    private static void handleCommand(Command c, String[] splitInput) throws Exception {
+        switch (c) {
+            case LIST_ALL:
+                System.out.println(TaskList.print());
                 break;
 
-            } else if (input.equals("list")) {
-                System.out.println(TaskList.print());
+            case MARK:
+                int index = Integer.parseInt(splitInput[0]);
+                TaskList.mark(index);
+                System.out.println("Woof! Good Job on completing:\n" + TaskList.get(index));
+                break;
 
-            } else if (input.startsWith("mark")) {
-                try {
-                    if (TaskList.size() == 0) {
-                        throw new IllegalStateException("WERWER! You have no tasks yet!");
-                    }
+            case UNMARK:
+                index = Integer.parseInt(splitInput[0]);
+                TaskList.unmark(index);
+                System.out.println("Woof! Made a mistake? I have unmarked:\n" + TaskList.get(index));
+                break;
 
-                    if (input.trim().length() < 5) {
-                        throw new IllegalArgumentException(
-                                "WERWER! You must input the index of the task you want to mark!");
-                    }
+            case REMOVE:
+                index = Integer.parseInt(splitInput[0]);
+                TaskList.delete(index);
+                System.out.println("Woof! Less Work! I have deleted:\n" + TaskList.get(index));
+                System.out.println("Woof! You have " + TaskList.size() + " tasks now.");
+                break;
 
-                    String index = input.substring(5).trim();
-                    if (index.isEmpty()) {
-                        throw new IllegalArgumentException(
-                                "WERWER! You must input the index of the task you want to mark!");
-                    }
+            case CREATE_TODO:
+                TaskList.addTodo(splitInput[0]);
+                System.out.println("Woof! successfully added: " + TaskList.getLast());
+                System.out.println("Woof! You have " + TaskList.size() + " tasks now.");
+                break;
 
-                    int i = Integer.parseInt(index);
-                    if (i < 0 || i > TaskList.size()) {
-                        throw new IndexOutOfBoundsException("WERWER! The index you have entered is out of bounds!");
-                    }
+            case CREATE_DEADLINE:
+                TaskList.addDeadline(splitInput[0], splitInput[1]);
+                System.out.println("Woof! successfully added: " + TaskList.getLast());
+                System.out.println("Woof! You have " + TaskList.size() + " tasks now.");
+                break;
 
-                    TaskList.mark(index);
-                    System.out.println("Woof! Good Job on completing:\n" + TaskList.get(index));
+            case CREATE_EVENT:
+                TaskList.addEvent(splitInput[0], splitInput[1], splitInput[2]);
+                System.out.println("Woof! successfully added: " + TaskList.getLast());
+                System.out.println("Woof! You have " + TaskList.size() + " tasks now.");
+                break;
+        }
+    }
 
-                } catch (IllegalStateException | IllegalArgumentException | IndexOutOfBoundsException
-                         | MarkedErrorException e) {
-                    System.out.println(e.getMessage());
-                }
+    private static boolean isPositiveInteger(String s) {
+        return s.matches("\\d+") && Integer.parseInt(s) > 0;
+    }
 
-            } else if (input.startsWith("unmark")) {
-                try {
-                    if (TaskList.size() == 0) {
-                        throw new IllegalStateException("WERWER! You have no tasks yet!");
-                    }
+    public static void main(String[] args) {
+        greet();
 
-                    if (input.trim().length() < 5) {
-                        throw new IllegalArgumentException(
-                                "WERWER! You must input the index of the task you want to unmark!");
-                    }
-
-                    String index = input.substring(7).trim();
-                    if (index.isEmpty()) {
-                        throw new IllegalArgumentException(
-                                "WERWER! You must input the index of the task you want to unmark!");
-                    }
-
-                    int i = Integer.parseInt(index);
-                    if (i < 0 || i > TaskList.size()) {
-                        throw new IndexOutOfBoundsException("WERWER! The index you have entered is out of bounds!");
-                    }
-
-                    TaskList.unmark(index);
-                    System.out.println("Woof! Made a mistake? I have unmarked:\n" + TaskList.get(index));
-
-                } catch (IllegalStateException | IllegalArgumentException | IndexOutOfBoundsException
-                         | UnmarkedErrorException e) {
-                    System.out.println(e.getMessage());
-                }
-
-            } else if (input.startsWith("delete")) {
-                try {
-                    if (TaskList.size() == 0) {
-                        throw new IllegalStateException("WERWER! You have no tasks yet!");
-                    }
-
-                    if (input.trim().length() < 5) {
-                        throw new IllegalArgumentException(
-                                "WERWER! You must input the index of the task you want to unmark!");
-                    }
-
-                    String index = input.substring(7).trim();
-                    if (index.isEmpty()) {
-                        throw new IllegalArgumentException(
-                                "WERWER! You must input the index of the task you want to unmark!");
-                    }
-
-                    int i = Integer.parseInt(index);
-                    if (i < 0 || i > TaskList.size()) {
-                        throw new IndexOutOfBoundsException("WERWER! The index you have entered is out of bounds!");
-                    }
-
-                    TaskList.delete(index);
-                    System.out.println("Woof! Less Work! I have deleted:\n" + TaskList.get(index));
-                    System.out.println("Woof! You have " + TaskList.size() + " tasks now.");
-                } catch (IllegalStateException | IllegalArgumentException | IndexOutOfBoundsException e) {
-                    System.out.println(e.getMessage());
-                }
-
-            } else if (input.startsWith("todo")) {
-                if (input.trim().length() < 5) {
-                    System.out.println("WERWER! Content of todo cannot be empty!");
-                } else {
-                    TaskList.addTodo(input.substring(5).trim());
-                    System.out.println("Woof! successfully added: " + TaskList.getLast());
-                    System.out.println("Woof! You have " + TaskList.size() + " tasks now.");
-                }
-
-            } else if (input.startsWith("deadline")) {
-                String[] parts = input.split("deadline|/by");
-                if (parts.length < 3) {
-                    System.out.println("""
-                WERWER! Something in deadline is missing!
-                Follow this template woof: deadline (your task) /by (deadline)
-                """);
-                } else {
-                    TaskList.addDeadline(parts[1].trim(), parts[2].trim());
-                    System.out.println("Woof! successfully added: " + TaskList.getLast());
-                    System.out.println("Woof! You have " + TaskList.size() + " tasks now.");
-                }
-
-            } else if (input.startsWith("event")) {
-                String[] parts = input.split("event|/from|/to");
-                if (parts.length < 4) {
-                    System.out.println("""
-                WERWER! Something in event is missing!
-                Follow this template woof: event (your task) /from (start time) /to (end time)
-                """);
-                } else {
-                    TaskList.addEvent(parts[1].trim(), parts[2].trim(), parts[3].trim());
-                    System.out.println("Woof! successfully added: " + TaskList.getLast());
-                    System.out.println("Woof! You have " + TaskList.size() + " tasks now.");
-                }
-
-            } else {
-                System.out.println("woof woof woof?");
-
+        Scanner sc = new Scanner(System.in);
+        String input = sc.nextLine();
+        while (!input.equalsIgnoreCase("bye")) {
+            try {
+                Command c = new Woof().parseCommand(input);
+                handleCommand(c, validateArgs(c, input));
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            } finally {
+                input = sc.nextLine();
             }
         }
+
+        goodbye();
 
         sc.close();
     }

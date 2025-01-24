@@ -16,6 +16,9 @@ public class TaskList {
     }
 
     public static String print() {
+        if (list.isEmpty()) {
+            return "You have no tasks!";
+        }
         StringBuilder sb = new StringBuilder();
         for (int i = 1; i <= list.size(); i++) {
             String curr = list.get(i - 1).toString();
@@ -24,20 +27,20 @@ public class TaskList {
         return sb.toString();
     }
 
-    public static void mark(String index) throws MarkedErrorException {
-        list.get(Integer.parseInt(index) - 1).markAsDone();
+    public static void mark(int index) throws MarkedErrorException {
+        list.get(index - 1).markAsDone();
     }
 
-    public static void unmark(String index) throws UnmarkedErrorException {
-        list.get(Integer.parseInt(index) - 1).unmarkAsDone();
+    public static void unmark(int index) throws UnmarkedErrorException {
+        list.get(index - 1).unmarkAsDone();
     }
 
-    public static void delete(String index) {
-        list.remove(Integer.parseInt(index) - 1);
+    public static void delete(int index) {
+        list.remove(index - 1);
     }
 
-    public static String get(String index) {
-        return list.get(Integer.parseInt(index) - 1).toString();
+    public static String get(int index) {
+        return list.get(index - 1).toString();
     }
 
     public static int size() {
