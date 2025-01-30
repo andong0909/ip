@@ -50,4 +50,8 @@ public class TaskList {
     public static String getLast() {
         return list.get(list.size() - 1).toString();
     }
+
+    public static Task getTask(int index) {
+        return list.get(index - 1);
+    }
 }

@@ -11,4 +11,13 @@ public class Event extends Task {
     public String toString() {
         return "[E]" + super.toString() + " (from: " + from + " to: " + to + ")";
     }
+
+    public String getType() {
+        return "event";
+    }
+
+    @Override
+    public String print() {
+        return String.format("E | %s | %s | %s", super.toString(), from, to);
+    }
 }

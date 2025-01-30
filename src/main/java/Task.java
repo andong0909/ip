@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
     private boolean isDone;
     private String task;
 
@@ -32,4 +32,10 @@ public class Task {
         }
         isDone = false;
     }
+
+    public abstract String getType();
+
+    public String print() {
+        return String.format("%d | %s", isDone ? 1 : 0, task);
+    };
 }
