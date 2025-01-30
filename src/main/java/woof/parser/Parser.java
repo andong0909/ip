@@ -4,6 +4,14 @@ import woof.command.*;
 import woof.task.TaskList;
 
 public class Parser {
+    /**
+     * Parses the line input by users through CLI. Those without further parsing is directly returned as a command.
+     * Those with further arguments required is passed on to another parse function.
+     *
+     * @param input Input by users.
+     * @return A corresponding command function.
+     * @throws Exception Illegal inputs.
+     */
     public static Command parse(String input) throws Exception {
         input = input.trim();
         if (input.contains(" ")) {
@@ -31,6 +39,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the description argument for creating a todo task.
+     *
+     * @param description Second part of the CLI input.
+     * @return A corresponding command for creating a todo task.
+     * @throws Exception Illegal inputs such as empty description.
+     */
     public static Command parseCreateTodo(String description) throws Exception {
         description = description.trim();
         if (description.isEmpty()) {
@@ -39,6 +54,13 @@ public class Parser {
         return new AddTodoCommand(new String[] { description });
     }
 
+    /**
+     * Parses the description and due date arguments for creating a deadline task.
+     *
+     * @param input Second part of the CLI input.
+     * @return A corresponding command for creating a deadline task.
+     * @throws Exception Illegal inputs such as empty description.
+     */
     public static Command parseCreateDeadline(String input) throws Exception {
         if (!input.contains("/by")) {
             throw new IllegalArgumentException("""
@@ -54,6 +76,13 @@ public class Parser {
         return new AddDeadlineCommand(parts);
     }
 
+    /**
+     * Parses the description, and start and end time arguments for creating an event task.
+     *
+     * @param input Second part of the CLI input.
+     * @return A corresponding command for creating an event task.
+     * @throws Exception Illegal inputs such as empty description.
+     */
     public static Command parseCreateEvent(String input) throws Exception {
         if (!input.contains("/from") || !input.contains("/to")) {
             throw new IllegalArgumentException("""
@@ -70,21 +99,48 @@ public class Parser {
         return new AddEventCommand(parts);
     }
 
+    /**
+     * Parse the index for marking.
+     *
+     * @param index Second part of the CLI input.
+     * @return A corresponding command for marking a task as done.
+     * @throws Exception Illegal inputs such as non-integers.
+     */
     public static Command parseMark(String index) throws Exception {
         validateInt(index);
         return new MarkCommand(new String[] { index });
     }
 
+    /**
+     * Parse the index for unmarking.
+     *
+     * @param index Second part of the CLI input.
+     * @return A corresponding command for unmarking a task as done.
+     * @throws Exception Illegal inputs such as non-integers.
+     */
     public static Command parseUnmark(String index) throws Exception {
         validateInt(index);
         return new UnmarkCommand(new String[] { index });
     }
 
+    /**
+     * Parse the index for deleting.
+     *
+     * @param index Second part of the CLI input.
+     * @return A corresponding command for deleting a task.
+     * @throws Exception Illegal inputs such as non-integers.
+     */
     public static Command parseDelete(String index) throws Exception {
         validateInt(index);
         return new DeleteCommand(new String[] { index });
     }
 
+    /**
+     * Validate the index such that it is a positive integer that is within the size of the current task list.
+     *
+     * @param index Index to be validated
+     * @throws Exception Illegal inputs such as non-integers.
+     */
     public static void validateInt(String index) throws Exception {
         if (TaskList.size() == 0) {
             throw new IllegalStateException("WERWER! You have no tasks yet!");

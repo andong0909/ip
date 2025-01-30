@@ -12,6 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Storage {
+    /**
+     * Loads tasks stored locally via a file path. If there is no such directory or file, this method will
+     * automatically create one for users.
+     *
+     * @param filePath The file path to access.
+     * @return A list of all the tasks stored.
+     */
     public List<Task> loadTasks(String filePath) {
         List<Task> tasks = new ArrayList<>(100);
         try {
@@ -33,6 +40,13 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Takes a line in the locally stored file and parse it into an instance of a task.
+     *
+     * @param line The input from a locally stored file.
+     * @return A corresponding instance of a task.
+     * @throws Exception Possible corruption of the file leading to unrecognisable format.
+     */
     private static Task parseTask(String line) throws Exception {
         String[] split = line.split(" \\| ");
         String command = split[0];
@@ -63,6 +77,11 @@ public class Storage {
         return newTask;
     }
 
+    /**
+     * After every command, it rewrites the local file to sync with the current state.
+     *
+     * @param filePath The local file to access.
+     */
     public static void saveTasks(String filePath) {
         try (FileWriter fw = new FileWriter(filePath)) {
             for (int i = 1; i <= TaskList.size(); i++) {
