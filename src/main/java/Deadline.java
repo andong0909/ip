@@ -20,10 +20,6 @@ public class Deadline extends Task {
                 + deadline.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
 
-    public String getType() {
-        return "deadline";
-    }
-
     @Override
     public String print() {
         return String.format("D | %s | %s", super.print(),

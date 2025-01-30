@@ -1,4 +1,10 @@
-package PACKAGE_NAME;
+public class ClearCommand extends Command {
+    public ClearCommand() {
+        super();
+    }
 
-public class ClearCommand {
+    public void execute(TaskList tasks, Ui ui) {
+        TaskList.clear();
+        ui.displayTasksCleared();
+    }
 }

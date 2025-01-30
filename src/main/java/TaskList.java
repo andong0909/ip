@@ -2,7 +2,15 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class TaskList {
-    private static ArrayList<Task> list = new ArrayList<>(100);
+    private static ArrayList<Task> list = new ArrayList<>();
+
+    public TaskList(List<Task> tasks) {
+        this.list.addAll(tasks);
+    }
+
+    public TaskList() {
+        this.list = new ArrayList<>(100);
+    }
 
     public static void addTodo(String task) {
         list.add(new Todo(task.trim()));
@@ -23,7 +31,10 @@ public class TaskList {
         StringBuilder sb = new StringBuilder();
         for (int i = 1; i <= list.size(); i++) {
             String curr = list.get(i - 1).toString();
-            sb.append(i).append(". ").append(curr).append("\n");
+            sb.append(i).append(". ").append(curr);
+            if (i < list.size()) {
+                sb.append("\n");
+            }
         }
         return sb.toString();
     }

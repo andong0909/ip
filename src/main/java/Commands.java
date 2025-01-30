@@ -1,4 +1,4 @@
-public enum Command {
+public enum Commands {
     EXIT,
     LIST_ALL,
     MARK,

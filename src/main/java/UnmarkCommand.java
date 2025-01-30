@@ -1,4 +1,12 @@
-package PACKAGE_NAME;
+public class UnmarkCommand extends Command {
+    public UnmarkCommand(String[] inputs) {
+        super(inputs);
+    }
 
-public class UnmarkCommand {
+    @Override
+    public void execute(TaskList tasks, Ui ui) throws Exception {
+        int index = Integer.parseInt(inputs[0]);
+        TaskList.unmark(index);
+        ui.displayTaskUnmarked(TaskList.get(index));
+    }
 }

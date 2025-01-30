@@ -22,10 +22,6 @@ public class Event extends Task {
                 + to.format(DateTimeFormatter.ofPattern("MMM dd yyyy, HH:mm")) + ")";
     }
 
-    public String getType() {
-        return "event";
-    }
-
     @Override
     public String print() {
         return String.format("E | %s | %s | %s", super.print(),

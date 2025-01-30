@@ -8,10 +8,6 @@ public class Todo extends Task {
         return "[T]" + super.toString();
     }
 
-    public String getType() {
-        return "todo";
-    }
-
     @Override
     public String print() {
         return String.format("T | %s", super.print());

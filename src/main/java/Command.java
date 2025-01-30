@@ -1,4 +1,17 @@
-package PACKAGE_NAME;
+public abstract class Command {
+    protected final String[] inputs;
 
-public class Command {
+    public Command(String[] inputs) {
+        this.inputs = inputs;
+    }
+
+    public Command() {
+        this.inputs = new String[0];
+    }
+
+    public abstract void execute(TaskList tasks, Ui ui) throws Exception;
+
+    public boolean isExit() {
+        return false;
+    }
 }

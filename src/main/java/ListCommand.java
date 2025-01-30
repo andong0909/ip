@@ -1,4 +1,9 @@
-package PACKAGE_NAME;
+public class ListCommand extends Command {
+    public ListCommand() {
+        super();
+    }
 
-public class ListCommand {
+    public void execute(TaskList tasks, Ui ui) {
+        ui.displayTaskList();
+    }
 }

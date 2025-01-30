@@ -1,4 +1,12 @@
-package PACKAGE_NAME;
+public class DeleteCommand extends Command {
+    public DeleteCommand(String[] inputs) {
+        super(inputs);
+    }
 
-public class DeleteCommand {
+    @Override
+    public void execute(TaskList tasks, Ui ui) throws Exception {
+        int index = Integer.parseInt(inputs[0]);
+        TaskList.delete(index);
+        ui.displayTaskDeleted(TaskList.get(index), TaskList.size());
+    }
 }

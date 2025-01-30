@@ -1,4 +1,11 @@
-package PACKAGE_NAME;
+public class AddDeadlineCommand extends Command {
+    public AddDeadlineCommand(String[] inputs) {
+        super(inputs);
+    }
 
-public class AddDeadlineCommand {
+    @Override
+    public void execute(TaskList tasks, Ui ui) throws Exception {
+        TaskList.addDeadline(inputs[0], inputs[1]);
+        ui.displayTaskAdded(TaskList.getLast(), TaskList.size());
+    }
 }

@@ -1,4 +1,11 @@
-package PACKAGE_NAME;
+public class AddTodoCommand extends Command {
+    public AddTodoCommand(String[] inputs) {
+        super(inputs);
+    }
 
-public class AddTodoCommand {
+    @Override
+    public void execute(TaskList tasks, Ui ui) {
+        TaskList.addTodo(inputs[0]);
+        ui.displayTaskAdded(TaskList.getLast(), TaskList.size());
+    }
 }
