@@ -55,4 +55,8 @@ public class TaskList {
     public static Task getTask(int index) {
         return list.get(index - 1);
     }
+
+    public static void clear() {
+        list.clear();
+    }
 }

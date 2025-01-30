@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Woof {
     private static enum Command {
-        EXIT, LIST_ALL, MARK, UNMARK, REMOVE, CREATE_TODO, CREATE_DEADLINE, CREATE_EVENT
+        EXIT, LIST_ALL, MARK, UNMARK, REMOVE, CREATE_TODO, CREATE_DEADLINE, CREATE_EVENT, CLEAR
     }
 
     private Command parseCommand(String input) {
@@ -19,6 +19,7 @@ public class Woof {
                 case "deadline" -> Command.CREATE_DEADLINE;
                 case "event" -> Command.CREATE_EVENT;
                 case "list" -> Command.LIST_ALL;
+                case "clear" -> Command.CLEAR;
                 default -> throw new IllegalArgumentException("woof woof woof?");
             };
         } else {
@@ -26,6 +27,8 @@ public class Woof {
                 return Command.EXIT;
             } else if (input.equalsIgnoreCase("list")) {
                 return Command.LIST_ALL;
+            } else if (input.equalsIgnoreCase("clear")) {
+                return Command.CLEAR;
             } else {
                 throw new IllegalArgumentException("woof woof woof?");
             }
@@ -44,9 +47,9 @@ public class Woof {
                 Hope to see you again soon!""");
     }
 
-    private static String[] validateArgs(Command c, String input) throws Exception {
+    private static String[] validateArgs(Command c, String input) {
         // LIST_ALL
-        if (c == Command.LIST_ALL) {
+        if (c == Command.LIST_ALL || c == Command.CLEAR) {
             return new String[1];
         }
         String leftover = input.split(" ", 2)[1];
@@ -115,6 +118,11 @@ public class Woof {
         switch (c) {
             case LIST_ALL:
                 System.out.println(TaskList.print());
+                break;
+
+            case CLEAR:
+                TaskList.clear();
+                System.out.println("Woof! You have cleared all tasks!");
                 break;
 
             case MARK:
