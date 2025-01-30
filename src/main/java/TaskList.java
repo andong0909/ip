@@ -4,15 +4,15 @@ public class TaskList {
     private static ArrayList<Task> list = new ArrayList<>(100);
 
     public static void addTodo(String task) {
-        list.add(new Todo(task));
+        list.add(new Todo(task.trim()));
     }
 
     public static void addDeadline(String task, String date) {
-        list.add(new Deadline(task, date));
+        list.add(new Deadline(task.trim(), date.trim()));
     }
 
     public static void addEvent(String task, String from, String to) {
-        list.add(new Event(task, from, to));
+        list.add(new Event(task.trim(), from.trim(), to.trim()));
     }
 
     public static String print() {
@@ -49,5 +49,9 @@ public class TaskList {
 
     public static String getLast() {
         return list.get(list.size() - 1).toString();
+    }
+
+    public static Task getTask(int index) {
+        return list.get(index - 1);
     }
 }

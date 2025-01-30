@@ -161,6 +161,7 @@ public class Woof {
 
     public static void main(String[] args) {
         greet();
+        Storage.loadTasks();
 
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
@@ -168,6 +169,7 @@ public class Woof {
             try {
                 Command c = new Woof().parseCommand(input);
                 handleCommand(c, validateArgs(c, input));
+                Storage.saveTasks();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             } finally {
