@@ -24,6 +24,7 @@ public class Parser {
                 case "todo" -> parseCreateTodo(parts[1]);
                 case "deadline" -> parseCreateDeadline(parts[1]);
                 case "event" -> parseCreateEvent(parts[1]);
+                case "find" -> parseFind(parts[1]);
                 default -> throw new IllegalArgumentException("woof woof woof?");
             };
         } else {
@@ -52,6 +53,14 @@ public class Parser {
             throw new IllegalArgumentException("WERWER! Content of todo cannot be empty!");
         }
         return new AddTodoCommand(new String[] { description });
+    }
+
+    public static Command parseFind(String input) throws Exception {
+        input = input.trim();
+        if (input.isEmpty()) {
+            throw new IllegalArgumentException("WERWER! What do you want to find?");
+        }
+        return new FindCommand(new String[] { input });
     }
 
     /**

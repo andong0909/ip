@@ -57,6 +57,10 @@ public class Ui {
         System.out.println(TaskList.print());
     }
 
+    public void displayFind(String find) {
+        System.out.println("Sniff sniff... Woof! I have found:\n" + find);
+    }
+
     /**
      * Displays a message confirming that a task has been added.
      *

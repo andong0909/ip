@@ -80,6 +80,28 @@ public class TaskList {
         return sb.toString();
     }
 
+    public static String find(String query) throws Exception {
+        if (list.isEmpty()) {
+            return "WERWER! You have no tasks!";
+        }
+        StringBuilder sb = new StringBuilder();
+        boolean found = false;
+        for (int i = 1; i <= list.size(); i++) {
+            if (list.get(i - 1).getDescription().contains(query)) {
+                found = true;
+                sb.append(i).append(". ").append(list.get(i - 1).toString());
+                if (i < list.size()) {
+                    sb.append("\n");
+                }
+            }
+        }
+        if (found) {
+            return sb.toString();
+        } else {
+            throw new IllegalArgumentException("WERWER! No matching keyword found!");
+        }
+    }
+
     /**
      * Marks a task as done at the specified index.
      *
