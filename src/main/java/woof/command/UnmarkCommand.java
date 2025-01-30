@@ -1,3 +1,8 @@
+package woof.command;
+
+import woof.ui.Ui;
+import woof.task.TaskList;
+
 public class UnmarkCommand extends Command {
     public UnmarkCommand(String[] inputs) {
         super(inputs);

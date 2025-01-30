@@ -1,3 +1,8 @@
+package woof.command;
+
+import woof.ui.Ui;
+import woof.task.TaskList;
+
 public abstract class Command {
     protected final String[] inputs;
 

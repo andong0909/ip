@@ -1,3 +1,8 @@
+package woof.command;
+
+import woof.ui.Ui;
+import woof.task.TaskList;
+
 public class ClearCommand extends Command {
     public ClearCommand() {
         super();

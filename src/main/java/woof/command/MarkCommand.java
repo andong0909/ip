@@ -1,3 +1,8 @@
+package woof.command;
+
+import woof.ui.Ui;
+import woof.task.TaskList;
+
 public class MarkCommand extends Command {
     public MarkCommand(String[] inputs) {
         super(inputs);

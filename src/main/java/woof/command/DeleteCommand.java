@@ -1,3 +1,8 @@
+package woof.command;
+
+import woof.ui.Ui;
+import woof.task.TaskList;
+
 public class DeleteCommand extends Command {
     public DeleteCommand(String[] inputs) {
         super(inputs);

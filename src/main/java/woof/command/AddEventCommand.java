@@ -1,3 +1,8 @@
+package woof.command;
+
+import woof.ui.Ui;
+import woof.task.TaskList;
+
 public class AddEventCommand extends Command {
     public AddEventCommand(String[] inputs) {
         super(inputs);

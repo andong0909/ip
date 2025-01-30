@@ -1,3 +1,5 @@
+package woof.ui;
+
 import java.util.Scanner;
 
 public class Ui {

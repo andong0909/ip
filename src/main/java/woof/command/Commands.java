@@ -1,3 +1,5 @@
+package woof.command;
+
 public enum Commands {
     EXIT,
     LIST_ALL,

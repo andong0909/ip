@@ -1,30 +1,33 @@
-import java.time.LocalDate;
-import java.util.Scanner;
+import woof.storage.Storage;
+import woof.command.Command;
+import woof.parser.Parser;
+import woof.task.TaskList;
+import woof.ui.Ui;
 
 public class Woof {
-//    private Commands parseCommand(String input) {
+//    private woof.command.Commands parseCommand(String input) {
 //        input = input.trim();
 //        if (input.contains(" ")) {
 //            String[] parts = input.split(" ", 2);
 //            // MARK
 //            return switch (parts[0].toLowerCase()) {
-//                case "mark" -> Commands.MARK;
-//                case "unmark" -> Commands.UNMARK;
-//                case "delete" -> Commands.REMOVE;
-//                case "todo" -> Commands.CREATE_TODO;
-//                case "deadline" -> Commands.CREATE_DEADLINE;
-//                case "event" -> Commands.CREATE_EVENT;
-//                case "list" -> Commands.LIST_ALL;
-//                case "clear" -> Commands.CLEAR;
+//                case "mark" -> woof.command.Commands.MARK;
+//                case "unmark" -> woof.command.Commands.UNMARK;
+//                case "delete" -> woof.command.Commands.REMOVE;
+//                case "todo" -> woof.command.Commands.CREATE_TODO;
+//                case "deadline" -> woof.command.Commands.CREATE_DEADLINE;
+//                case "event" -> woof.command.Commands.CREATE_EVENT;
+//                case "list" -> woof.command.Commands.LIST_ALL;
+//                case "clear" -> woof.command.Commands.CLEAR;
 //                default -> throw new IllegalArgumentException("woof woof woof?");
 //            };
 //        } else {
 //            if (input.equalsIgnoreCase("bye")) {
-//                return Commands.EXIT;
+//                return woof.command.Commands.EXIT;
 //            } else if (input.equalsIgnoreCase("list")) {
-//                return Commands.LIST_ALL;
+//                return woof.command.Commands.LIST_ALL;
 //            } else if (input.equalsIgnoreCase("clear")) {
-//                return Commands.CLEAR;
+//                return woof.command.Commands.CLEAR;
 //            } else {
 //                throw new IllegalArgumentException("woof woof woof?");
 //            }
@@ -43,9 +46,9 @@ public class Woof {
 //                Hope to see you again soon!""");
 //    }
 //
-//    private static String[] validateArgs(Commands c, String input) {
+//    private static String[] validateArgs(woof.command.Commands c, String input) {
 //        // LIST_ALL
-//        if (c == Commands.LIST_ALL || c == Commands.CLEAR) {
+//        if (c == woof.command.Commands.LIST_ALL || c == woof.command.Commands.CLEAR) {
 //            return new String[1];
 //        }
 //        String leftover = input.split(" ", 2)[1];
@@ -57,7 +60,7 @@ public class Woof {
 //                // fall over
 //
 //            case REMOVE:
-//                if (TaskList.size() == 0) {
+//                if (woof.task.TaskList.size() == 0) {
 //                    throw new IllegalStateException("WERWER! You have no tasks yet!");
 //                }
 //                String index = leftover.trim();
@@ -65,7 +68,7 @@ public class Woof {
 //                    throw new NumberFormatException("WERWER! Make sure you have input a valid index!");
 //                }
 //                int i = Integer.parseInt(index);
-//                if (i > TaskList.size()) {
+//                if (i > woof.task.TaskList.size()) {
 //                    throw new IndexOutOfBoundsException("WERWER! The index you have entered is too large!");
 //                }
 //                return new String[] { index };
@@ -110,52 +113,52 @@ public class Woof {
 //        }
 //    }
 //
-//    private static void handleCommand(Commands c, String[] splitInput) throws Exception {
+//    private static void handleCommand(woof.command.Commands c, String[] splitInput) throws Exception {
 //        switch (c) {
 //            case LIST_ALL:
-//                System.out.println(TaskList.print());
+//                System.out.println(woof.task.TaskList.print());
 //                break;
 //
 //            case CLEAR:
-//                TaskList.clear();
+//                woof.task.TaskList.clear();
 //                System.out.println("Woof! You have cleared all tasks!");
 //                break;
 //
 //            case MARK:
 //                int index = Integer.parseInt(splitInput[0]);
-//                TaskList.mark(index);
-//                System.out.println("Woof! Good Job on completing:\n" + TaskList.get(index));
+//                woof.task.TaskList.mark(index);
+//                System.out.println("Woof! Good Job on completing:\n" + woof.task.TaskList.get(index));
 //                break;
 //
 //            case UNMARK:
 //                index = Integer.parseInt(splitInput[0]);
-//                TaskList.unmark(index);
-//                System.out.println("Woof! Made a mistake? I have unmarked:\n" + TaskList.get(index));
+//                woof.task.TaskList.unmark(index);
+//                System.out.println("Woof! Made a mistake? I have unmarked:\n" + woof.task.TaskList.get(index));
 //                break;
 //
 //            case REMOVE:
 //                index = Integer.parseInt(splitInput[0]);
-//                TaskList.delete(index);
-//                System.out.println("Woof! Less Work! I have deleted:\n" + TaskList.get(index));
-//                System.out.println("Woof! You have " + TaskList.size() + " tasks now.");
+//                woof.task.TaskList.delete(index);
+//                System.out.println("Woof! Less Work! I have deleted:\n" + woof.task.TaskList.get(index));
+//                System.out.println("Woof! You have " + woof.task.TaskList.size() + " tasks now.");
 //                break;
 //
 //            case CREATE_TODO:
-//                TaskList.addTodo(splitInput[0]);
-//                System.out.println("Woof! successfully added: " + TaskList.getLast());
-//                System.out.println("Woof! You have " + TaskList.size() + " tasks now.");
+//                woof.task.TaskList.addTodo(splitInput[0]);
+//                System.out.println("Woof! successfully added: " + woof.task.TaskList.getLast());
+//                System.out.println("Woof! You have " + woof.task.TaskList.size() + " tasks now.");
 //                break;
 //
 //            case CREATE_DEADLINE:
-//                TaskList.addDeadline(splitInput[0], splitInput[1]);
-//                System.out.println("Woof! successfully added: " + TaskList.getLast());
-//                System.out.println("Woof! You have " + TaskList.size() + " tasks now.");
+//                woof.task.TaskList.addDeadline(splitInput[0], splitInput[1]);
+//                System.out.println("Woof! successfully added: " + woof.task.TaskList.getLast());
+//                System.out.println("Woof! You have " + woof.task.TaskList.size() + " tasks now.");
 //                break;
 //
 //            case CREATE_EVENT:
-//                TaskList.addEvent(splitInput[0], splitInput[1], splitInput[2]);
-//                System.out.println("Woof! successfully added: " + TaskList.getLast());
-//                System.out.println("Woof! You have " + TaskList.size() + " tasks now.");
+//                woof.task.TaskList.addEvent(splitInput[0], splitInput[1], splitInput[2]);
+//                System.out.println("Woof! successfully added: " + woof.task.TaskList.getLast());
+//                System.out.println("Woof! You have " + woof.task.TaskList.size() + " tasks now.");
 //                break;
 //        }
 //    }
