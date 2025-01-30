@@ -1,5 +1,7 @@
 package woof.ui;
 
+import woof.task.TaskList;
+
 import java.util.Scanner;
 
 public class Ui {

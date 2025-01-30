@@ -1,5 +1,8 @@
 package woof.task;
 
+import woof.exception.MarkedErrorException;
+import woof.exception.UnmarkedErrorException;
+
 public class Task {
     private boolean isDone;
     private String task;
