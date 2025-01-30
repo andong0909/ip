@@ -1,3 +1,5 @@
+package woof;
+
 import woof.storage.Storage;
 import woof.command.Command;
 import woof.parser.Parser;

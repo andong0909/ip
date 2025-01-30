@@ -1,8 +1,8 @@
-# Woof User Guide
+# woof.Woof User Guide
 
 // Product screenshot goes here
 
-Woof is a helpful chatbot with features of a to-do list that can help you keep track of the things you need to do.
+woof.Woof is a helpful chatbot with features of a to-do list that can help you keep track of the things you need to do.
 
 ## Adding deadlines
 

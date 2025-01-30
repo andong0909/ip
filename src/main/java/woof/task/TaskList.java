@@ -34,7 +34,7 @@ public class TaskList {
 
     public static String print() {
         if (list.isEmpty()) {
-            return "You have no tasks!";
+            return "WERWER! You have no tasks!";
         }
         StringBuilder sb = new StringBuilder();
         for (int i = 1; i <= list.size(); i++) {

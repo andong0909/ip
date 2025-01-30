@@ -1,23 +1,23 @@
-Woof! Woof! I am your paw-sonsal chatbot!
-What can Woof do for you?
+woof.Woof! woof.Woof! I am your paw-sonsal chatbot!
+What can woof.Woof do for you?
 
-Woof! successfully added: [T][ ] buy milk
-Woof! You have 1 tasks now.
-Woof! successfully added: [T][ ] clean house
-Woof! You have 2 tasks now.
+woof.Woof! successfully added: [T][ ] buy milk
+woof.Woof! You have 1 tasks now.
+woof.Woof! successfully added: [T][ ] clean house
+woof.Woof! You have 2 tasks now.
 1. [T][ ] buy milk
 2. [T][ ] clean house
 
-Woof! Good Job on completing:
+woof.Woof! Good Job on completing:
 [T][X] buy milk
-Woof! Good Job on completing:
+woof.Woof! Good Job on completing:
 [T][X] clean house
-Woof! Made a mistake? I have unmarked:
+woof.Woof! Made a mistake? I have unmarked:
 [T][ ] buy milk
-Woof! successfully added: [D][ ] return book (by: Sunday)
-Woof! You have 3 tasks now.
-Woof! successfully added: [E][ ] team meeting (from: 2pm to: 3pm)
-Woof! You have 4 tasks now.
+woof.Woof! successfully added: [D][ ] return book (by: Sunday)
+woof.Woof! You have 3 tasks now.
+woof.Woof! successfully added: [E][ ] team meeting (from: 2pm to: 3pm)
+woof.Woof! You have 4 tasks now.
 1. [T][ ] buy milk
 2. [T][X] clean house
 3. [D][ ] return book (by: Sunday)
