@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.*;
 
 public class TaskList {
@@ -7,11 +8,11 @@ public class TaskList {
         list.add(new Todo(task.trim()));
     }
 
-    public static void addDeadline(String task, String date) {
+    public static void addDeadline(String task, String date) throws IllegalDateException {
         list.add(new Deadline(task.trim(), date.trim()));
     }
 
-    public static void addEvent(String task, String from, String to) {
+    public static void addEvent(String task, String from, String to) throws IllegalDateTimeException {
         list.add(new Event(task.trim(), from.trim(), to.trim()));
     }
 
@@ -53,5 +54,9 @@ public class TaskList {
 
     public static Task getTask(int index) {
         return list.get(index - 1);
+    }
+
+    public static void clear() {
+        list.clear();
     }
 }

@@ -1,14 +1,23 @@
-public class Deadline extends Task {
-    private String deadline;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
-    public Deadline(String string, String deadline) {
+public class Deadline extends Task {
+    private LocalDate deadline;
+
+    public Deadline(String string, String deadline) throws IllegalDateException {
         super(string);
-        this.deadline = deadline;
+        try {
+            this.deadline = LocalDate.parse(deadline);
+        } catch (DateTimeParseException e) {
+            throw new IllegalDateException("");
+        }
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + deadline + ")";
+        return "[D]" + super.toString() + " (by: "
+                + deadline.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
 
     public String getType() {
@@ -17,6 +26,7 @@ public class Deadline extends Task {
 
     @Override
     public String print() {
-        return String.format("D | %s | %s", super.print(), deadline);
+        return String.format("D | %s | %s", super.print(),
+                deadline.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
     }
 }
