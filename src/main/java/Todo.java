@@ -14,6 +14,6 @@ public class Todo extends Task {
 
     @Override
     public String print() {
-        return String.format("T | %s", super.toString());
+        return String.format("T | %s", super.print());
     }
 }
