@@ -13,11 +13,11 @@ public class TaskList {
     private static ArrayList<Task> list = new ArrayList<>();
 
     public TaskList(List<Task> tasks) {
-        this.list.addAll(tasks);
+        list.addAll(tasks);
     }
 
     public TaskList() {
-        this.list = new ArrayList<>(100);
+        list = new ArrayList<>(100);
     }
 
     public static void addTodo(String task) {
