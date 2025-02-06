@@ -59,12 +59,7 @@ public class TaskList {
     public static void addEvent(String task, String from, String to) throws IllegalDateTimeException {
         list.add(new Event(task.trim(), from.trim(), to.trim()));
     }
-
-    /**
-     * Displays the entire list on CLI.
-     *
-     * @return The entire list.
-     */
+    
     public static String print() {
         if (list.isEmpty()) {
             return "WERWER! You have no tasks!";
