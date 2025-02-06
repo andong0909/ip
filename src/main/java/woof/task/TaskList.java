@@ -18,14 +18,14 @@ public class TaskList {
      * @param tasks List of task usually scanned from a local source.
      */
     public TaskList(List<Task> tasks) {
-        this.list.addAll(tasks);
+        list.addAll(tasks);
     }
 
     /**
      * Creates an instance of an empty task list.
      */
     public TaskList() {
-        this.list = new ArrayList<>(100);
+        list = new ArrayList<>(100);
     }
 
     /**
