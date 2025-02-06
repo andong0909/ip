@@ -80,7 +80,12 @@ public class TaskList {
         return sb.toString();
     }
 
-    public static String find(String query) throws Exception {
+    /**
+     * Finds tasks that matches keywords
+     * @param query Keywords
+     * @return String of tasks
+     */
+    public static String find(String query) throws IllegalArgumentException {
         if (list.isEmpty()) {
             return "WERWER! You have no tasks!";
         }
