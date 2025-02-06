@@ -32,6 +32,28 @@ public class TaskList {
         list.add(new Event(task.trim(), from.trim(), to.trim()));
     }
 
+    public static String find(String query) throws IllegalArgumentException {
+        if (list.isEmpty()) {
+            return "WERWER! You have no tasks!";
+        }
+        StringBuilder sb = new StringBuilder();
+        boolean found = false;
+        for (int i = 1; i <= list.size(); i++) {
+            if (list.get(i - 1).getDescription().contains(query)) {
+                found = true;
+                sb.append(i).append(". ").append(list.get(i - 1).toString());
+                if (i < list.size()) {
+                    sb.append("\n");
+                }
+            }
+        }
+        if (found) {
+            return sb.toString();
+        } else {
+            throw new IllegalArgumentException("WERWER! No matching keyword found!");
+        }
+    }
+
     public static String print() {
         if (list.isEmpty()) {
             return "WERWER! You have no tasks!";
