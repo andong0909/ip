@@ -41,4 +41,8 @@ public class Task {
     public String print() {
         return String.format("%d | %s", isDone ? 1 : 0, task);
     };
+
+    public String getDescription() {
+        return task;
+    }
 }
