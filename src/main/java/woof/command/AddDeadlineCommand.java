@@ -1,6 +1,6 @@
 package woof.command;
 
-import woof.ui.Ui;
+import woof.gui.Ui;
 import woof.task.TaskList;
 
 public class AddDeadlineCommand extends Command {

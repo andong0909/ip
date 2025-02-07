@@ -1,7 +1,4 @@
-T | 0 | AAA
-D | 1 | AAA | 2025-02-01
-T | 0 | FUCK
-T | 0 | FUCKKK
-T | 0 | FUCKKKKKKKK
-T | 0 | FK
-T | 0 | FUCK FUCK
+T | 0 | apply internships
+T | 0 | 2100 lecture
+D | 0 | 2100 quiz | 2025-07-09
+T | 0 | review ZB quiz1

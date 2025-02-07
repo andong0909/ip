@@ -1,7 +1,7 @@
 package woof.command;
 
 import woof.task.TaskList;
-import woof.ui.Ui;
+import woof.gui.Ui;
 
 public class ExitCommand extends Command {
     public ExitCommand() {
