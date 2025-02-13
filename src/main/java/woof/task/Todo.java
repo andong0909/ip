@@ -1,5 +1,8 @@
 package woof.task;
 
+/**
+ * Represents a todo task with a description only.
+ */
 public class Todo extends Task {
     public Todo(String string) {
         super(string);

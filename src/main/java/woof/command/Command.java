@@ -3,6 +3,9 @@ package woof.command;
 import woof.gui.Ui;
 import woof.task.TaskList;
 
+/**
+ * Represents a command to be executed by the user.
+ */
 public abstract class Command {
     protected final String[] inputs;
 
@@ -16,7 +19,7 @@ public abstract class Command {
 
     public abstract void execute(TaskList tasks, Ui ui) throws Exception;
 
-    public boolean isExit() {
-        return false;
+    public int parseIndex(String s) {
+        return Integer.parseInt(s);
     }
 }

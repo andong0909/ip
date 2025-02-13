@@ -81,6 +81,11 @@ public class MainWindow extends AnchorPane implements Ui {
         );
     }
 
+    /**
+     * Displays a message confirming that a task has been found.
+     *
+     * @param find The task that was found.
+     */
     public void displayFind(String find) {
         dialogContainer.getChildren().add(
                 DialogBox.getWoofDialog("Sniff sniff... Woof! I have found:\n" + find, woofImage)
@@ -95,7 +100,8 @@ public class MainWindow extends AnchorPane implements Ui {
      */
     public void displayTaskAdded(String task, int totalTasks) {
         dialogContainer.getChildren().add(
-                DialogBox.getWoofDialog("Woof! successfully added: " + task + "\nWoof! You have " + totalTasks + " tasks now.", woofImage)
+                DialogBox.getWoofDialog("Woof! successfully added: " + task
+                        + "\nWoof! You have " + totalTasks + " tasks now.", woofImage)
         );
     }
 

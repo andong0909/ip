@@ -3,6 +3,9 @@ package woof.task;
 import woof.exception.MarkedErrorException;
 import woof.exception.UnmarkedErrorException;
 
+/**
+ * Represents a general task which is never used in this project.
+ */
 public class Task {
     private boolean isDone;
     private String task;

@@ -8,7 +8,9 @@ import woof.exception.IllegalDateTimeException;
 import woof.exception.MarkedErrorException;
 import woof.exception.UnmarkedErrorException;
 
-
+/**
+ * Represents the list of tasks.
+ */
 public class TaskList {
     private static ArrayList<Task> list = new ArrayList<>();
 
@@ -59,7 +61,12 @@ public class TaskList {
     public static void addEvent(String task, String from, String to) throws IllegalDateTimeException {
         list.add(new Event(task.trim(), from.trim(), to.trim()));
     }
-    
+
+    /**
+     * Prints all tasks in the list.
+     *
+     * @return String of tasks.
+     */
     public static String print() {
         if (list.isEmpty()) {
             return "WERWER! You have no tasks!";
@@ -77,6 +84,7 @@ public class TaskList {
 
     /**
      * Finds tasks that matches keywords
+     *
      * @param query Keywords
      * @return String of tasks
      */

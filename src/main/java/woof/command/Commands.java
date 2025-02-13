@@ -1,5 +1,8 @@
 package woof.command;
 
+/**
+ * Represents the commands that the user can input.
+ */
 public enum Commands {
     EXIT,
     LIST_ALL,

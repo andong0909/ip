@@ -13,6 +13,9 @@ import woof.command.MarkCommand;
 import woof.command.UnmarkCommand;
 import woof.task.TaskList;
 
+/**
+ * Parses the input by users through CLI.
+ */
 public class Parser {
     /**
      * Parses the line input by users through CLI. Those without further parsing is directly returned as a command.
@@ -30,14 +33,14 @@ public class Parser {
 
             // MARK
             return switch (parts[0].toLowerCase()) {
-                case "mark" -> parseMark(parts[1]);
-                case "unmark" -> parseUnmark(parts[1]);
-                case "delete" -> parseDelete(parts[1]);
-                case "todo" -> parseCreateTodo(parts[1]);
-                case "deadline" -> parseCreateDeadline(parts[1]);
-                case "event" -> parseCreateEvent(parts[1]);
-                case "find" -> parseFind(parts[1]);
-                default -> throw new IllegalArgumentException("woof woof woof?");
+            case "mark" -> parseMark(parts[1]);
+            case "unmark" -> parseUnmark(parts[1]);
+            case "delete" -> parseDelete(parts[1]);
+            case "todo" -> parseCreateTodo(parts[1]);
+            case "deadline" -> parseCreateDeadline(parts[1]);
+            case "event" -> parseCreateEvent(parts[1]);
+            case "find" -> parseFind(parts[1]);
+            default -> throw new IllegalArgumentException("woof woof woof?");
             };
         } else {
             if (input.equalsIgnoreCase("bye")) {
@@ -67,6 +70,13 @@ public class Parser {
         return new AddTodoCommand(new String[] { description });
     }
 
+    /**
+     * Parses the input for finding tasks that matches the keywords.
+     *
+     * @param input Second part of the CLI input.
+     * @return A corresponding command for finding tasks.
+     * @throws Exception Illegal inputs such as empty keywords.
+     */
     public static Command parseFind(String input) throws Exception {
         input = input.trim();
         if (input.isEmpty()) {
