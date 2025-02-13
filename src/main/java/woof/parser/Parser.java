@@ -1,6 +1,16 @@
 package woof.parser;
 
-import woof.command.*;
+import woof.command.AddDeadlineCommand;
+import woof.command.AddEventCommand;
+import woof.command.AddTodoCommand;
+import woof.command.ClearCommand;
+import woof.command.Command;
+import woof.command.DeleteCommand;
+import woof.command.ExitCommand;
+import woof.command.FindCommand;
+import woof.command.ListCommand;
+import woof.command.MarkCommand;
+import woof.command.UnmarkCommand;
 import woof.task.TaskList;
 
 public class Parser {
@@ -16,6 +26,8 @@ public class Parser {
         input = input.trim();
         if (input.contains(" ")) {
             String[] parts = input.split(" ", 2);
+            assert parts.length == 2 : "Input should be split into exactly two parts";
+
             // MARK
             return switch (parts[0].toLowerCase()) {
                 case "mark" -> parseMark(parts[1]);
@@ -151,6 +163,8 @@ public class Parser {
      * @throws Exception Illegal inputs such as non-integers.
      */
     public static void validateInt(String index) throws Exception {
+        assert index != null : "Index should not be null";
+
         if (TaskList.size() == 0) {
             throw new IllegalStateException("WERWER! You have no tasks yet!");
         }
@@ -165,6 +179,7 @@ public class Parser {
     }
 
     private static boolean isPositiveInteger(String s) {
+        assert s != null : "String should not be null";
         return s.matches("\\d+") && Integer.parseInt(s) > 0;
     }
 }
