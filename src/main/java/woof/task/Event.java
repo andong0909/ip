@@ -1,11 +1,14 @@
 package woof.task;
 
-import woof.exception.IllegalDateTimeException;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import woof.exception.IllegalDateTimeException;
+
+/**
+ * Represents an event task.
+ */
 public class Event extends Task {
     private LocalDateTime from;
     private LocalDateTime to;

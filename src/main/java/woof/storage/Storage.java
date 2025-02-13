@@ -1,7 +1,5 @@
 package woof.storage;
 
-import woof.task.*;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -11,6 +9,15 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import woof.task.Deadline;
+import woof.task.Event;
+import woof.task.Task;
+import woof.task.TaskList;
+import woof.task.Todo;
+
+/**
+ * Represents the storage of tasks locally. It is responsible for loading and saving tasks to a local file.
+ */
 public class Storage {
     /**
      * Loads tasks stored locally via a file path. If there is no such directory or file, this method will
@@ -53,26 +60,26 @@ public class Storage {
         Task newTask = null;
         boolean isCompleted = split[1].equals("1");
         switch (command) {
-            case "T":
-                newTask = new Todo(split[2]);
-                if (isCompleted) {
-                    newTask.markAsDone();
-                }
-                break;
-            case "D":
-                newTask = new Deadline(split[2], split[3]);
-                if (isCompleted) {
-                    newTask.markAsDone();
-                }
-                break;
-            case "E":
-                newTask = new Event(split[2], split[3], split[4]);
-                if (isCompleted) {
-                    newTask.markAsDone();
-                }
-                break;
-            default:
-                System.out.println("WERWER! I don't recognise this task: " + command);
+        case "T":
+            newTask = new Todo(split[2]);
+            if (isCompleted) {
+                newTask.markAsDone();
+            }
+            break;
+        case "D":
+            newTask = new Deadline(split[2], split[3]);
+            if (isCompleted) {
+                newTask.markAsDone();
+            }
+            break;
+        case "E":
+            newTask = new Event(split[2], split[3], split[4]);
+            if (isCompleted) {
+                newTask.markAsDone();
+            }
+            break;
+        default:
+            System.out.println("WERWER! I don't recognise this task: " + command);
         }
         return newTask;
     }
