@@ -134,7 +134,7 @@ public class Parser {
     }
 
     /**
-     * Parse the index for marking.
+     * Parses the index for marking.
      *
      * @param index Second part of the CLI input.
      * @return A corresponding command for marking a task as done.
@@ -146,7 +146,7 @@ public class Parser {
     }
 
     /**
-     * Parse the index for unmarking.
+     * Parses the index for unmarking.
      *
      * @param index Second part of the CLI input.
      * @return A corresponding command for unmarking a task as done.
@@ -158,7 +158,7 @@ public class Parser {
     }
 
     /**
-     * Parse the index for deleting.
+     * Parses the index for deleting.
      *
      * @param index Second part of the CLI input.
      * @return A corresponding command for deleting a task.
@@ -170,7 +170,7 @@ public class Parser {
     }
 
     /**
-     * Validate the index such that it is a positive integer that is within the size of the current task list.
+     * Validates the index such that it is a positive integer that is within the size of the current task list.
      *
      * @param index Index to be validated
      * @throws Exception Illegal inputs such as non-integers.

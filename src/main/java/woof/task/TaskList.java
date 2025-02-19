@@ -93,17 +93,17 @@ public class TaskList {
             return "WERWER! You have no tasks!";
         }
         StringBuilder sb = new StringBuilder();
-        boolean found = false;
+        boolean isFound = false;
         for (int i = 1; i <= list.size(); i++) {
             if (list.get(i - 1).getDescription().contains(query)) {
-                found = true;
+                isFound = true;
                 sb.append(i).append(". ").append(list.get(i - 1).toString());
                 if (i < list.size()) {
                     sb.append("\n");
                 }
             }
         }
-        if (found) {
+        if (isFound) {
             return sb.toString();
         } else {
             throw new IllegalArgumentException("WERWER! No matching keyword found!");
