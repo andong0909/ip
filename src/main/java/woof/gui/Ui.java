@@ -59,4 +59,6 @@ public interface Ui {
      * Displays a goodbye message when the application exits.
      */
     public void displayGoodbye();
+
+    public void displayHelp();
 }

@@ -159,4 +159,25 @@ public class MainWindow extends AnchorPane implements Ui {
                         Hope to see you again soon!""", woofImage)
         );
     }
+
+    /**
+     * Displays a help message to the user.
+     */
+    public void displayHelp() {
+        dialogContainer.getChildren().add(
+                DialogBox.getWoofDialog("""
+                        Woof! Need some help? Here are the commands you can use:
+                        1. todo <description> - Adds a todo task.
+                        2. deadline <description> /by <date> - Adds a deadline task.
+                        3. event <description> /from <start time> /to <end time> - Adds an event task.
+                        4. list - Lists all tasks.
+                        5. mark <task number> - Marks a task as done.
+                        6. unmark <task number> - Unmarks a task.
+                        7. delete <task number> - Deletes a task.
+                        8. find <keyword> - Finds tasks with the keyword.
+                        9. clear - Clears all tasks.
+                        10. help - Shows the list of commands.
+                        11. bye - Exits the application.""", woofImage)
+        );
+    }
 }

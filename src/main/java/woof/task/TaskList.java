@@ -24,7 +24,7 @@ public class TaskList {
     }
 
     /**
-     * Creates an instance of an empty task list.
+     * Creates an instance of a sample task list.
      */
     public TaskList() {
         list = new ArrayList<>(100);

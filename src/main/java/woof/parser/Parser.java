@@ -8,6 +8,7 @@ import woof.command.Command;
 import woof.command.DeleteCommand;
 import woof.command.ExitCommand;
 import woof.command.FindCommand;
+import woof.command.HelpCommand;
 import woof.command.ListCommand;
 import woof.command.MarkCommand;
 import woof.command.UnmarkCommand;
@@ -49,6 +50,8 @@ public class Parser {
                 return new ListCommand();
             } else if (input.equalsIgnoreCase("clear")) {
                 return new ClearCommand();
+            } else if (input.equalsIgnoreCase("help")) {
+                return new HelpCommand();
             } else {
                 throw new IllegalArgumentException("woof woof woof?");
             }
