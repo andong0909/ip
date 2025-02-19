@@ -1,4 +1,4 @@
-# woof.Woof User Guide
+# Woof User Guide
 
 Product screenshot goes here
 
