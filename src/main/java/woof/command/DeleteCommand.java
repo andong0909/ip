@@ -1,6 +1,7 @@
 package woof.command;
 
 import woof.gui.Ui;
+import woof.task.Task;
 import woof.task.TaskList;
 
 /**
@@ -14,7 +15,8 @@ public class DeleteCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui) throws Exception {
         int index = this.parseIndex(inputs[0]);
+        Task deleted = TaskList.getTask(index);
         TaskList.delete(index);
-        ui.displayTaskDeleted(TaskList.get(index), TaskList.size());
+        ui.displayTaskDeleted(deleted.toString(), TaskList.size());
     }
 }
