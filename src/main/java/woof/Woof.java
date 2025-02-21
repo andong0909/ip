@@ -47,4 +47,8 @@ public class Woof {
             ui.showError(e.getMessage());
         }
     }
+
+    public static void main(String[] args) {
+        new Woof("data/tasks.txt").ui.showWelcome();
+    }
 }

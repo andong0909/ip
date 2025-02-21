@@ -26,6 +26,7 @@ public class Main extends Application {
             fxmlLoader.<MainWindow>getController().setWoof(woof);
             woof.setUi(fxmlLoader.<MainWindow>getController());
             stage.show();
+            fxmlLoader.<MainWindow>getController().showWelcome();
         } catch (IOException e) {
             e.printStackTrace();
         }
