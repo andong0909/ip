@@ -8,6 +8,7 @@ public class HelpCommand extends Command {
         super();
     }
 
+    @Override
     public void execute(TaskList tasks, Ui ui) {
         ui.displayHelp();
     }

@@ -17,6 +17,7 @@ public class ClearCommand extends Command {
      * @param tasks Current task list.
      * @param ui Ui instance for displaying a message.
      */
+    @Override
     public void execute(TaskList tasks, Ui ui) {
         TaskList.clear();
         ui.displayTasksCleared();
